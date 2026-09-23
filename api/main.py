@@ -21,6 +21,7 @@ def home():
 
 # Endpoint chamado pelo Lemon Squeezy após cada pagamento
 @app.post("/webhooks/lemon-squeezy")
+@app.post("/webhooks/lemon-squeezy/")
 async def webhook_lemon_squeezy(request: Request):
     try:
         payload = await request.json()
