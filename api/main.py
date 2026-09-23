@@ -24,29 +24,34 @@ def home():
 @app.post("/webhooks/lemon-squeezy/")
 async def webhook_lemon_squeezy(request: Request):
     try:
+        # 1. Ler o payload JSON enviado pelo Lemon Squeezy
         payload = await request.json()
-        event_name = payload.get("meta", {}).get("event_name")
+        
+        # 2. Identificar o tipo de evento (ex: subscription_created, order_created)
+        meta = payload.get("meta", {})
+        event_name = meta.get("event_name")
         data = payload.get("data", {})
-
-        # 1. Pagamento de Subscrição Concluído com Sucesso
-        if event_name in ["order_created", "subscription_created"]:
+        
+        print(f"Evento recebido da Lemon Squeezy: {event_name}")
+        
+        # 3. Tratar consoante o tipo de evento
+        if event_name == "subscription_created":
             attributes = data.get("attributes", {})
-            email_cliente = attributes.get("user_email")
-            nome_produto = attributes.get("first_order_item", {}).get("product_name", "Base")
-
-            plano = "pro" if "pro" in nome_produto.lower() else "base"
-            nova_chave = gerar_chave(plano)
-
-            banco_licencas[nova_chave] = {
-                "email": email_cliente,
-                "plano": plano,
-                "status": "Ativa",
-                "hwid": None,
-                "validade": (datetime.datetime.now() + datetime.timedelta(days=30)).strftime("%Y-%m-%d")
-            }
-
-            print(f"🎉 [Lemon Squeezy] Nova licença para {email_cliente}: {nova_chave}")
-            return {"status": "sucesso", "chave": nova_chave}
+            user_email = attributes.get("user_email")
+            status = attributes.get("status")
+            print(f"Nova subscrição para o email: {user_email} com estado: {status}")
+            
+        elif event_name == "order_created":
+            attributes = data.get("attributes", {})
+            total = attributes.get("total")
+            print(f"Nova encomenda criada no valor de: {total}")
+            
+        # Retornar 200 OK para confirmar receção ao Lemon Squeezy
+        return {"status": "success", "event": event_name}
+        
+    except Exception as e:
+        print(f"Erro ao processar webhook: {str(e)}")
+        raise HTTPException(status_code=400, detail=str(e))
 
         # 2. Cancelamento ou Falha no Pagamento
         elif event_name in ["subscription_cancelled", "subscription_expired"]:
