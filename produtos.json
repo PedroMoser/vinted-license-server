@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "titulo": "Camisola",
+        "categoria": "Homem",
+        "marca": "Bershka",
+        "preco": "15",
+        "tamanho": "M",
+        "cor": "Preto",
+        "condicao": "Muito bom",
+        "tamanho_pacote": "Médio (Camisolas, calças)",
+        "descricao": "Detalhes adicionais do produto (material, estado real, medidas)...",
+        "fotos": [
+            "C:/Users/pedro/Pictures/Roblox/RobloxScreenShot20260806_012350216.png"
+        ],
+        "status": "Processado"
+    }
+]

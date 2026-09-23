@@ -1,0 +1,14 @@
+[
+  {
+    "titulo": "Sweater Verde L.L.Bean",
+    "categoria": ["Homem", "Roupas", "Camisolas e Sweaters"],
+    "marca": "L.L.Bean",
+    "tamanho": "L",
+    "estado": "Muito bom",
+    "cor": ["Verde"],
+    "preco": 25.00,
+    "tamanho_embalagem": "Médio",
+    "pasta_fotos": "C:\\Users\\pedro\\Desktop\\Fotos\\Sweater01",
+    "status": "Ativo"
+  }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "titulo": "Camisola",
+        "categoria": "Homem",
+        "marca": "Bershka",
+        "preco": "10",
+        "tamanho": "M",
+        "cor": "Preto",
+        "condicao": "Muito bom",
+        "tamanho_pacote": "Médio (Camisolas, calças)",
+        "descricao": "EM muito bom estado",
+        "fotos": [
+            "C:/Users/pedro/Downloads/Captura de ecrã 2026-09-13 202239.png"
+        ],
+        "status": "Ativo"
+    }
+]
